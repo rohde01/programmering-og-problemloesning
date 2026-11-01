@@ -1,0 +1,5 @@
+
+Carl-Emil Rohde – kvb125
+For at køre koden, bruges dotnet run, hvor det i terminalen kaldes, hvilke filer programmet skal bruges på, samt navnet på den fil der skal returneres. Hele pointen er, at være i stand til at overskrive tekst fra to dokumenter, samlet i ét dokument. 
+
+Jeg har både afprøvet programmet med 32 og 64 bytes. I begge tilfælde, kørte programmet som forventet. Antallet af bytes kan justeres efter størrelsen på det dokument man ønsker at overskrive, hvor en byte svarer til ét bogstav.Mine to testfiler hedder fil1 og fil2. fil3 er filen programmet returnerer.

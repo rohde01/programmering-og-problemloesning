@@ -1,0 +1,227 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage[export]{adjustbox}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{xifthen}
+\usepackage{xcolor}
+\graphicspath{{Images/}}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{opt}
+
+
+
+
+
+
+\usepackage[utf8]{inputenc}
+
+\title{Opgave 2g}
+\author{Christer K. Lindholm, Carl-Emil Rohde og Emil Olesen}
+\date{September 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Opgave 2g0}
+
+\subsection{Opsummering af problemformulering:}
+
+Vi skal skrive et program i Fsharp, der har til formål at kunne addere, multiplicere samt rotere vektorer, skrevet som decimaltal. Samtidigt skal koden for dette beksrives med udvalgte steps fra "The 8-step guide" 
+
+\vspace{20}
+\subsection{Løsningsmuligheder - Overvejelser og Argumenter:}
+
+Ud fra principperne i "8-step guiden", har vi gjort os følgende overvejelser i udarbejdelsen af delopgaverne a,b og c, som vi nu vil dukumentere for i følgende afsnit:
+
+\subsection{opg a)}
+Først bestemmer vi typen vi arbejeder med, som er vektorer skrevet som floats (decimaltal).
+
+Vi bestemmer en funktion, "add" som er vores vektor1 og 2, der er en vektor og skal blive til én vektor.
+
+Vi definere en 3. vektor, som er vektor 1 & 2 lagt sammen efter overstående formular. Se figur 1.
+Figur~\ref{fig:fsharpCodeExample}
+\begin{figure}
+  \lstset{language=FSharp}
+\begin{lstlisting}
+(* *)
+let add (vetype vec = float * float
+
+let vec1 = vec (1.0, 2.0)
+let vec2 = vec (3.0, 4.0)
+c1: vec) (vec2: vec) : vec =
+    vec(fst vec1 + fst vec2, snd vec1 + snd vec2)
+
+let vec3 = add vec1 vec2
+printfn "%A" vec3
+\end{lstlisting}
+  \caption{}
+  \label{fig:fsharpCodeExample}
+\end{figure}
+
+\vspace{40mm}
+\subsection{opg b)}
+Vi skal gange en vektor med en konstant, og vi definerer derfor en konstant c og en ny vektor 4
+
+Vi definerer mul som vores funktion, der skal tage en vektor, og en konstant c som en float, gange de to, og derefter give os resultatet i form af en ny vektor 
+
+Vi definerer en ny vektor, som tager resultatet fra mul funktionen og definerer som en ny vektor, efter overstående formular. Se figur 2.
+
+\vspace{20mm}
+Figur~\ref{fig:fsharpCodeExample}
+\begin{figure}
+  \lstset{language=FSharp}
+\begin{lstlisting}
+(* *)
+let vec4 = vec (3.0, 5.0)
+let c = 6.0
+
+let mul (vec4: vec) (c: float): vec =
+    vec(fst vec4 * c, snd vec4 * c)
+
+let vec5 = mul vec4 c
+printfn "%A" vec5
+\end{lstlisting}
+  \caption{}
+  \label{fig:fsharpCodeExample}
+\end{figure}
+
+\subsection{opg c)}
+Vi skal rotere en vektor, som vi kalder for vektor6.
+Vi vil gerne definerer vores variabel a som pi. Det er denne variabel der bestemmer hvor meget vektoren skal rotere
+
+
+
+Vi definerer cos og sin, så det giver et mere overskueligt funktionsudtryk længere fremme i processen, dernæst
+definerer vi en funktion rot som, er vektor6 der er defineret som en vektor, og skal blive til en vektor.
+
+
+
+Rotation af en vektor er defineret som nedestående i figur 3, hvor x og y er defineret som vektor6' første og andenkordinat. Dernæst printer vi resultatet af dette. Se figur 3.
+
+Figur~\ref{fig:fsharpCodeExample}
+\begin{figure}
+  \lstset{language=FSharp}
+\begin{lstlisting}
+(* *)
+let vec6 = vec (4.0, 7.0)
+
+let a = System.Math.PI
+
+let cos = System.Math.Cos(a)
+let sin = System.Math.Sin(a)
+
+let rot (vec6: vec): vec =
+    let x = fst vec6
+    let y = snd vec6
+
+    vec(x * cos - y * sin, x * sin + y * cos)
+
+let vec7 = rot vec6
+printfn "%A" vec7
+\end{lstlisting}
+  \caption{}
+  \label{fig:fsharpCodeExample}
+\end{figure}
+
+
+\vspace{70mm}
+\section{Opgave 2g1}
+
+\subsection{Opsummering af problemformulering:}
+Vi skal ved brug af canvas tegne vektorer og lave floats om til ints, som skal resultere i 36 tegnede vektorer, som danner et hjul-ligende mønster.
+
+\subsection{(a)}
+Opgave (a) har vi løst ved at skrive funktionen \emph{toInt}, der tager en vektortype som argumenter og returnerer en type af to \emph{ints}. Omdannelse sker med den indbyggede funktion \emph{int()}, som kaldes på første og anden parameter (med \emph{fst} og \emph{snd}). Se figur 6.
+
+\subsection{(b)}
+Denne opgaves løses med funktionen \emph{add}, der tager to vektorer som argumenter og returnerer en vektor, hvis koordinatsæt er bestemt af de to førstekoordinater lagt sammen og de to andenkoordinator lagt sammen. 
+I kodeudklippet i figur~\ref{Additionkode}. 
+Vi bruger funktionen setVector til at kalde vores canvas samt de to vektorer, som skal adderes og tegnes i blå farve. 
+
+Figur~\ref{fig:fsharpCodeExample}
+\begin{figure}
+  \lstset{language=FSharp}
+\begin{lstlisting}
+(* *)
+let add (vec1: vec) (vec2: vec) : vec =
+    vec(fst vec1 + fst vec2, snd vec1 + snd vec2)
+
+let additionVector1 = (350.0, 350.0)
+let additionVector2 = (350.0, 0.0)
+
+let setVector (can: canvas) (col: color) (p: vec) (v: vec) : unit =
+    setLine can col (toInt p) (toInt (add p v))
+\end{lstlisting}
+  \caption{}
+  \label{fig:fsharpCodeExample}
+\end{figure}
+
+
+\subsection{(c)}
+For at tegne 36 vektorer, vælger vi at bygge en rekursiv funktion, der kaldes 36 gange og tæller ned til 0. Figur ~\ref{2g1c billede} dokumenterer resultatet.
+I figur \ref{2g1c kode} ses koden, der løser opgaven. Vores rekursive funktion definerer vi en vinkelgrad baseret på cirklens 360 grader divideret med antallet af vinkler: $360/36 \cdot \pi / 36.$
+\\ Funktionen \emph{rot} udnytter den oplyste formel for vinkelrotationer med cosinus og sinus, som kaldes på vores definerede startvektor.
+Vi definerer så hver vektors endepunkt \emph{vEnd} ved at kalde \emph{rot} på start vektorens koordinator.
+Til sidste kalder den rekursive funktion vores \emph{setVector}-funktion med de nu roterende koordinator som argumenter, hver gang det rekursive parameter n tæller 1 ned.
+
+Figur~\ref{fig:fsharpCodeExample}
+\begin{figure}
+  \lstset{language=FSharp}
+\begin{lstlisting}
+(* *)
+let rot (v: vec) (a: float) : vec =
+    let x = fst v
+    let y = snd v
+
+    (x*cos a - y*sin a, x*sin a + y*cos a)
+
+let draw (w: int) (h: int) =
+    let c = create w h 
+    let v1 = vec(350.0, 350.0)
+    let v2 = vec(350.0, 0.0)
+    let degree = ((2.0 * System.Math.PI)/36.0)
+    let rotvec = rot v1 degree           
+    let vEnd = add v1 v2 
+    for i = 0 to 35 do 
+        setVector c red v1 (rot(vEnd)((float i)/(degree)))
+    c    
+
+show (draw 700 700) "p to p+v" 
+\end{lstlisting}
+  \caption{}
+  \label{fig:fsharpCodeExample}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{Skærmbillede 2022-09-29 kl. 15.49.57.png}
+    \caption{}
+    \label{2g1c billede}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{Skærmbillede 2022-09-29 kl. 15.47.53.png}
+    \caption{}
+    \label{2g1c billede}
+\end{figure}
+
+
+
+\end{document}

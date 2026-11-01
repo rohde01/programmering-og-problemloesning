@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage [T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{figures/}{anotherFigureDirectory/}}
+
+\title{PoP-Aflevering 9i}
+\author{Carl-Emil Rohde}
+\date{December 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{Opsummering af problemformulering}
+I denne opgave, skal jeg ved brug af classes og objekter, lave et program der simulerer droner der flyver fra punkt til punkt. Funktioner skal kunne få dronerne til at flyve 1 sekund ad gangen, og afgøre hvilke droner der styrter sammen. De droner der styrter, skal gøres inaktive. Derudover skal jeg implementere funktioner der udregner afstanden mellem to droner, tjekker om en drone har nået sin destination, og tilføjer nye droner til "Airspace-klassen".
+
+\section*{Løsningsmuligheder, overvejelser og argumenter}
+\subsection*{Drone class}
+Her har jeg først lavet en member, til både position, speed og destination, så det er muligt at hente denne information ud for alle dronerne. Fly metoden har jeg implementeret ved at udregne retningen dronen skal flyve, taget cosinus og sinus til denne retning og ganget med hastigheden. Funktionen opdaterer så dronens aktuelle position. I AtDestination, har jeg udregnet retningsvektoren både mellem dronens startposition og slutposition samt startposition og aktuelle position. Hvis sidste nævnte er større end den anden, betyder det at dronen har nået sit mål, og dronens aktuelle position opdateres til at være den samme som destinationen.
+\subsection*{Airspace class}
+DroneDist har jeg implementeret, ved at benytte afstandsformlen, som tager de to droner der er givet som argumenter og udregner afstanden imellem dem. Add funktionen har jeg lavet ved at oprette en mutable list "drones", som skal indeholde alle aktive droner. For at tilføje en drone, bruger jeg concatinering på listen og den drone funktionen bliver kaldt med. I FlyDrones funktionen har jeg brugt "List.iter"   som kører listen med aktive droner igennem og for hvert drone element den finder, kalder den .fly fra drone klassen. således flyver alle droner i listen 1 sekund, hvergang FlyDrones bliver kaldt. I min implementering af collide funktionen, tager jeg udangspunkt i et for-loop inde i et for-loop for på den måde at udregne afstanden mellen alle dronekombinationer i listen. Herefter filtreres alle de droner hvis indbyrdes afstand er mindre end 5 væk og tilføjes til collide listen.
+
+\section*{Testimplementering}
+For at simulere 10 droner der flyver, i 10 sekunder, har jeg i min test-fil først oprettet 10 droner med forskellige hastigheder, samt forskellige start og slut positioner. Alle disse droner har jeg tilføjet til Airspace1, og derefter skiftevis kaldt FlyDrones og collide 10 gange, for efter hver flyvning at få sorteret de droner fra der kolliderer. Jeg printer listen med aktive droner både før og efter, så jeg kan se collide virker korrekt. De andre funktioner har jeg testet med simple printfn statements. 
+\end{document}
